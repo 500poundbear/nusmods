@@ -18,9 +18,13 @@ module.exports = Marionette.CompositeView.extend({
   childViewContainer: 'tbody',
   emptyView: EmptyView,
   template: template,
+  templateHelpers: function() {
+    return { totalModuleCredits: this.collection.totalModuleCredits };
+  },
   collectionEvents: {
     'add remove': function() {
       $('#clash').toggleClass('hidden', !this.collection.clashCount);
+      $('#total-module-credit').text("Total: " + this.collection.totalModuleCredits);
     }
   }
 });
